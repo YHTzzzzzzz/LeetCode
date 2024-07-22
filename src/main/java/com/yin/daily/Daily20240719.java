@@ -71,13 +71,13 @@ package com.yin.daily;
 public class Daily20240719 {
     public static void main(String[] args) {
         int[] possible = new int[]{0, 0, 1};
-        Solution3096 solution = new Solution3096();
+        Solution20240719 solution = new Solution20240719();
         int i = solution.minimumLevels(possible);
         System.out.println(i);
     }
 }
 
-class Solution3096 {
+class Solution20240719 {
     /**
      * 第一次提交，超时啦！
      */

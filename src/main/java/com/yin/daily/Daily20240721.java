@@ -40,7 +40,7 @@ public class Daily20240721 {
     public static void main(String[] args) {
         int[] arr = new int[]{2, 1, -2, -5, -2};
 
-        System.out.println(new Solution1186().maximumSum(arr));
+        System.out.println(new Solution20240721().maximumSum(arr));
     }
 }
 
@@ -52,7 +52,7 @@ public class Daily20240721 {
  * 1. 之前已经删除过：dp[i - 1][1] + arr[i]
  * 2. 之前没删除过：dp[i-1][0]
  */
-class Solution1186 {
+class Solution20240721 {
     public int maximumSum(int[] arr) {
 //        int n = arr.length;
 //        int[][] dp = new int[n][2];
