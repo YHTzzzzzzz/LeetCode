@@ -40,7 +40,7 @@ public class Lc16 {
 }
 
 class Solution16 {
-    public int threeSumClosest(int[] nums, int target) {
+    public int threeSumClosestError(int[] nums, int target) {
         // 排序
         Arrays.sort(nums);
         int left = 0, right = nums.length - 1, abs = Integer.MAX_VALUE, ans = 0;
@@ -57,6 +57,86 @@ class Solution16 {
                 left++;
             } else {
                 right--;
+            }
+        }
+        return ans;
+    }
+
+    public int threeSumClosest(int[] nums, int target) {
+        // 排序
+        Arrays.sort(nums);
+        int abs = Integer.MAX_VALUE, ans = 0;
+        for (int i = 0; i < nums.length - 2; i++) {
+            int j = i + 1, k = nums.length - 1;
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
+                int abs1 = Math.abs(sum - target);
+                if (abs1 < abs) {
+                    ans = sum;
+                    abs = abs1;
+                }
+                if (sum == target) {
+                    return sum;
+                } else if (sum < target) {
+                    j++;
+                } else {
+                    k--;
+                }
+            }
+        }
+        return ans;
+    }
+
+    // 贴一段灵茶山艾府的代码，有几个优化点
+    public int threeSumClosestPrefer(int[] nums, int target) {
+        Arrays.sort(nums);
+        int ans = 0, n = nums.length;
+        int minDiff = Integer.MAX_VALUE;
+        for (int i = 0; i < n - 2; i++) {
+            int x = nums[i];
+            if (i > 0 && x == nums[i - 1]) {
+                continue; // 优化三
+            }
+
+            // 优化一
+            int s = x + nums[i + 1] + nums[i + 2];
+            if (s > target) { // 后面无论怎么选，选出的三个数的和不会比 s 还小
+                if (s - target < minDiff) {
+                    ans = s; // 由于下面直接 break，这里无需更新 minDiff
+                }
+                break;
+            }
+
+            // 优化二
+            s = x + nums[n - 2] + nums[n - 1];
+            if (s < target) { // x 加上后面任意两个数都不超过 s，所以下面的双指针就不需要跑了
+                if (target - s < minDiff) {
+                    minDiff = target - s;
+                    ans = s;
+                }
+                continue;
+            }
+
+            // 双指针
+            int j = i + 1, k = n - 1;
+            while (j < k) {
+                s = x + nums[j] + nums[k];
+                if (s == target) {
+                    return target;
+                }
+                if (s > target) {
+                    if (s - target < minDiff) { // s 与 target 更近
+                        minDiff = s - target;
+                        ans = s;
+                    }
+                    k--;
+                } else { // s < target
+                    if (target - s < minDiff) { // s 与 target 更近
+                        minDiff = target - s;
+                        ans = s;
+                    }
+                    j++;
+                }
             }
         }
         return ans;
