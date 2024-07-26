@@ -49,14 +49,14 @@ import java.util.stream.Collectors;
 public class Daily20240724 {
     public static void main(String[] args) {
 
-        Solution solution = new Solution();
+        Solution20240724 solution = new Solution20240724();
 //        System.out.println(solution.relocateMarbles(new int[]{1,6,7,8}, new int[]{1,7,2}, new int[]{2,9,5}));
 //        System.out.println(solution.relocateMarbles(new int[]{1,1,3,3}, new int[]{1,3}, new int[]{2,2}));
         System.out.println(solution.relocateMarbles(new int[]{3, 4}, new int[]{4,3,1,2,2,3,2,4,1}, new int[]{3,1,2,2,3,2,4,1,1}));
     }
 }
 
-class Solution {
+class Solution20240724 {
     public List<Integer> relocateMarblesMyself(int[] nums, int[] moveFrom, int[] moveTo) {
         HashMap<Integer, Integer> store = new HashMap<>();
         for (int num : nums) {
