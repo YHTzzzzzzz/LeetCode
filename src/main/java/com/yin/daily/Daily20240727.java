@@ -92,5 +92,20 @@ class Solution20240727 {
             return Math.min(target - c, c + 26 - target);
         }
     }
+
+    // 给个灵茶的题解，很精炼
+    public String getSmallestStringPrefer(String s, int k) {
+        char[] t = s.toCharArray();
+        for (int i = 0; i < t.length; i++) {
+            int dis = Math.min(t[i] - 'a', 'z' - t[i] + 1);
+            if (dis > k) {
+                t[i] -= k;
+                break;
+            }
+            t[i] = 'a';
+            k -= dis;
+        }
+        return new String(t);
+    }
 }
 
