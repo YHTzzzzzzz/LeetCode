@@ -36,7 +36,7 @@ public class Daily20240804 {
 }
 
 
-class Solution {
+class Solution20240804 {
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
         if (root == null) {
             return false;
