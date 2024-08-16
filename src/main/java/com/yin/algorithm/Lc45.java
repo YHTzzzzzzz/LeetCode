@@ -35,7 +35,7 @@ package com.yin.algorithm;
  */
 public class Lc45 {
     public static void main(String[] args) {
-        int[] nums = {3,4,3,2,5,4,3};
+        int[] nums = {3, 4, 3, 2, 5, 4, 3};
         System.out.println(new Solution45().jump(nums));
     }
 }
@@ -45,19 +45,22 @@ class Solution45 {
         return dfs(0, nums);
     }
 
+    /**
+     * 从下标i开始跳跃
+     */
     private int dfs(int i, int[] nums) {
         int n = nums.length;
         if (n == 1) {
             return 0;
         }
-        if (i > n - 1) {
+        if (i > n - 1) { // 已经跳出了数组下标
             return 1;
         }
         if (nums[i] >= n - i - 1) { // 如果当前值大于等于剩余长度，则直接返回
             return 1;
         }
         int index = 0, max = 0, res = 1;
-        for (int j = i; j <= i + nums[i] && j < n -1; j++) {
+        for (int j = i; j <= i + nums[i] && j < n - 1; j++) {
             if (max < nums[j] + j) {
                 max = nums[j] + j;
                 index = j;
